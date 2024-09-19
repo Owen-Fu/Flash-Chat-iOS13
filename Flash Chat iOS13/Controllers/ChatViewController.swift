@@ -7,18 +7,18 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseAuth
+import FirebaseFirestore
 
 class ChatViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextfield: UITextField!
     
-    let messages: [Message] = [
-        Message(sender: "1@2.com", body: "1"),
-        Message(sender: "a@b.com", body: "2"),
-        Message(sender: "1@2.com", body: "3")
-    ]
+    let db = Firestore.firestore()
+    
+    var messages: [Message] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +27,48 @@ class ChatViewController: UIViewController {
         navigationItem.hidesBackButton = true
         
         tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
+        
+        
+        loadMessages()
+    }
+    
+    func loadMessages () {
+        messages = []
+        
+        db.collection(K.FStore.collectionName).getDocuments() { (querySnapshot, error) in
+            if let e = error {
+                print(e)
+            } else {
+                if let snapshotDocument = querySnapshot?.documents {
+                    for doc in snapshotDocument {
+                        let data = doc.data()
+                        if let messageSender = data[K.FStore.senderField] as? String, let messageBody = data[K.FStore.bodyField] as? String {
+                            let newMessage = Message(sender: messageSender, body: messageBody)
+                            self.messages.append(newMessage)
+    
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                            }
+                        }
+                        
+                        print(doc.data())
+                    }
+                }
+            }
+        }
+
     }
     
     @IBAction func sendPressed(_ sender: UIButton) {
+        if let meeesgeBody = messageTextfield.text, let messageSender = Auth.auth().currentUser?.email {
+            db.collection(K.FStore.collectionName).addDocument(data: [K.FStore.senderField: messageSender, K.FStore.bodyField: meeesgeBody]) { (error) in
+                if let e = error {
+                    print(e)
+                } else {
+                    print("Successfully save data")
+                }
+            }
+        }
     }
     
 

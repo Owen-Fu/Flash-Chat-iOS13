@@ -21,6 +21,7 @@
 		5A03FF872C941AEF00AEF376 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A03FF862C941AEF00AEF376 /* GoogleService-Info.plist */; };
 		5A03FF8A2C941BA500AEF376 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5A03FF892C941BA500AEF376 /* FirebaseAuth */; };
 		5A03FF8C2C941BA500AEF376 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 5A03FF8B2C941BA500AEF376 /* FirebaseStorage */; };
+		5A1B949C2C9BCCAB000895FB /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 5A1B949B2C9BCCAB000895FB /* FirebaseFirestore */; };
 		5A9D5B9C2C9A81E900A848AC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9D5B9B2C9A81E900A848AC /* Constants.swift */; };
 		5A9D5B9E2C9A9B9E00A848AC /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9D5B9D2C9A9B9E00A848AC /* Message.swift */; };
 		5A9D5BA32C9AA1FF00A848AC /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9D5BA12C9AA1FF00A848AC /* MessageCell.swift */; };
@@ -56,6 +57,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				202DEB642C1031511E728C45 /* Pods_Flash_Chat_iOS13.framework in Frameworks */,
+				5A1B949C2C9BCCAB000895FB /* FirebaseFirestore in Frameworks */,
 				5A03FF8A2C941BA500AEF376 /* FirebaseAuth in Frameworks */,
 				5A03FF8C2C941BA500AEF376 /* FirebaseStorage in Frameworks */,
 			);
@@ -167,6 +169,7 @@
 			packageProductDependencies = (
 				5A03FF892C941BA500AEF376 /* FirebaseAuth */,
 				5A03FF8B2C941BA500AEF376 /* FirebaseStorage */,
+				5A1B949B2C9BCCAB000895FB /* FirebaseFirestore */,
 			);
 			productName = "Flash Chat iOS13";
 			productReference = 0B628173235DEE8100E35CAF /* Flash Chat iOS13.app */;
@@ -501,6 +504,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5A03FF882C941BA500AEF376 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		5A1B949B2C9BCCAB000895FB /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A03FF882C941BA500AEF376 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
